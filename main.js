@@ -13,15 +13,19 @@ const obj = convertCookieToObject(document.cookie);
 window.onload = function() {
   money = obj["money"];
   factory1 = obj["factory1"];
-  if (money == undefined) {
-    money = 0
-  }
-  if (factory1 == undefined) {
-    factory1 = 0
-  }
+  Cookie_Check();
   Money_Update();
   Factory_Update();
   console.log(obj);
+}
+
+function Cookie_Check() {
+  if (money == undefined) {
+    money = 0;
+  }
+  if (factory1 == undefined) {
+    factory1 = 0;
+  }
 }
 
 function convertCookieToObject(cookies) {
