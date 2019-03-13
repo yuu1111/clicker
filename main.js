@@ -1,5 +1,5 @@
 var VERSION=1.000;
-var DEBUG = 1
+var DEBUG = 1;
 var money = 0;
 
 var factory1 = 0;
@@ -51,16 +51,16 @@ function Update() {
 }
 
 function Money_Update() {
-  target = document.getElementById("moneytxt");
-  target.innerHTML = money.toLocaleString() + "円";
+  moneytxt = document.getElementById("moneytxt");
+  moneytxt.innerHTML = money.toLocaleString() + "円";
 }
 
 function Factory_Update() {
   FactoryPrice_Calc();
-  target = document.getElementById("factory1value");
-  target.innerHTML = factory1.toLocaleString() + "個";
-  target = document.getElementById("factory1price");
-  target.innerHTML = factory1price.toLocaleString() + "円";
+  factory1value = document.getElementById("factory1value");
+  factory1value.innerHTML = factory1.toLocaleString() + "個";
+  factory1price = document.getElementById("factory1price");
+  factory1price.innerHTML = factory1price.toLocaleString() + "円";
 }
 
 function FactoryPrice_Calc() {
@@ -73,8 +73,8 @@ function FactoryPrice_Calc() {
 
 function Click() {
   money++;
-  target = document.getElementById("moneytxt");
-  target.innerHTML = money + "円";
+  moneytxt = document.getElementById("moneytxt");
+  moneytxt.innerHTML = money + "円";
 }
 
 function BuyClick(button) {
