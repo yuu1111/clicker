@@ -1,9 +1,13 @@
 var VERSION=1.000;
-var DEBUG = 1;
+var DEBUG = true;
 var money = 0;
 
 var factory1 = 0;
 var factory1price = 10;
+
+var money_txt;
+var factory1value_txt;
+var factory1price_txt;
 
 var cookies = document.cookie;
 var cookieItem = cookies.split(";");
@@ -13,10 +17,17 @@ const obj = convertCookieToObject(document.cookie);
 window.onload = function() {
   money = obj["money"];
   factory1 = obj["factory1"];
+  Get_txt()
   Cookie_Check();
   Money_Update();
   Factory_Update();
   console.log(obj);
+}
+
+function Get_txt() {
+  money_txt = document.getElementById("money");
+  factory1value_txt = document.getElementById("factory1value");
+  factory1price_txt = document.getElementById("factory1price");
 }
 
 function Cookie_Check() {
@@ -46,44 +57,40 @@ function Update() {
   Factory_Update();
   if (factory1 > 0) {
     money = Number(money);
-  money += Number(factory1) * 0.1
+    money += Number(factory1) * 0.1
   }
 }
 
 function Money_Update() {
-  moneytxt = document.getElementById("moneytxt");
-  moneytxt.innerHTML = money.toLocaleString() + "円";
+  money_txt.innerHTML = money.toLocaleString() + "円";
 }
 
 function Factory_Update() {
   FactoryPrice_Calc();
-  factory1value = document.getElementById("factory1value");
-  factory1value.innerHTML = factory1.toLocaleString() + "個";
-  factory1price = document.getElementById("factory1price");
-  factory1price.innerHTML = factory1price.toLocaleString() + "円";
+  factory1value_txt.innerHTML = factory1.toLocaleString() + "個";
+  factory1price_txt.innerHTML = factory1price.toLocaleString() + "円";
 }
 
 function FactoryPrice_Calc() {
+  factory1price = 10;
   if (factory1 > 0) {
     factory1price = factory1 * 10 + 10;
-  } else {
-    factory1price = 10;
   }
 }
 
 function Click() {
   money++;
-  moneytxt = document.getElementById("moneytxt");
-  moneytxt.innerHTML = money + "円";
+  Money_Update()
 }
 
 function BuyClick(button) {
-    if (button == 1 && money > factory1price - 1) {
-      money -= factory1price;
-      factory1++;
-    }
+  if (button == 1 && money > factory1price - 1) {
+    money -= factory1price;
+    factory1++;
+  }
   Update();
 }
+
 function Save() {
   document.cookie = 'money=' + money;
   document.cookie = 'factory1=' + factory1;
@@ -99,7 +106,7 @@ function Reset() {
 }
 
 function Debug_Log(str) {
-  if (DEBUG == 1) {
+  if (DEBUG) {
     console.log(str);
   }
 }
